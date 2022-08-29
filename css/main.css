@@ -1,0 +1,574 @@
+@import "./reset.css";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+
+/* Заведем перемнные, которые будем использовать во время написани css */
+
+/* переменная - ширина контейнера / root означает, что мы заводим переменные на самый верхний уровень, т.е. на тег html*/
+:root {
+    --container-width: 1270px; /*всегда учитываем поля, здесь они по 15px*/
+    --container-padding: 15px; 
+    --secondary: rgba(15, 31, 28, 0.5); /*задаем переменную цвета, который встречается много раз в обычных параграфах*/
+    --orange: #FF7C4E;
+}
+/* ///// */
+
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #F6F6F6;
+    color: #0F1F1C;
+}
+
+.none {
+    display: none !important;
+}
+
+.container {
+    max-width: var(--container-width);
+    padding: 0 var(--container-padding);
+    margin: 0 auto; /*чтобы контейнер был по центру*/
+}
+
+/* Пишем класс для нестандартного контейнера */
+.container-right {
+    /* Чтобы вычислить паддинг нам надо воспользоваться calc тут надо из 100% (ширина страницы) вычесть ширину конейенера стандартного, поделить на 2 и прибавить 15px тех, что были у него паддингом */
+    padding-left: calc( (100% - var(--container-width))/ 2 + var(--container-padding) );
+}
+
+
+
+
+
+
+/* Header */
+
+.header {
+    overflow: hidden;
+    position: relative;
+    min-height: 940px;
+    background: linear-gradient(132.05deg, #428E5F -17.38%, #112120 78.4%), #204434;
+    padding-top: 44px;
+    color: #FFFFFF;
+}
+
+
+/* белый треугольник внизу header мы сделаем с помощью псевдоэлемента */
+
+.header::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 96px;
+
+  
+
+    background-image: url("./../img/header/header-bottom.svg");
+    background-size: 100%; /*чтобы svg трансформировался без учета пропорций у самого svg надо добавить атрибут preserveAspectRatio="none"*/
+}
+
+
+.header__top {
+    margin-bottom: 86px;
+}
+
+.header__row{
+    display: flex;
+    
+}
+
+
+.header__content {
+    position: relative;
+    z-index: 1;
+    max-width: 592px;
+}
+
+.header__img {
+    
+    position: relative;
+    flex-grow: 1;
+   
+}
+
+.header__img img {
+   
+    position: absolute;
+    top: -181px;
+    right: -87px;
+    
+    max-width: unset; /*это добавляем из-за reset там указано, что 100% и поэтому она можт сжаться */
+    width: 894px;
+    height: 940px;
+}
+
+
+
+/* NAV */
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    column-gap: 80px; /*обязательно делаем его хотя бы миним, чтобы при мобильной адаптации все было окей*/
+    align-items: center;
+}
+
+
+.nav__list {
+    display: flex;
+    column-gap: 80px;
+    font-weight: 500;
+    font-size: 15px;
+}
+
+
+.nav__list a {
+    position: relative;
+}
+
+
+.nav__list.nav__list--footer a.active::after,
+.nav__list.nav__list--footer a:hover::after {
+    display: none;
+}
+
+/* это полоска снизу, когда мы находимся на страницу  */
+.nav__list a.active::after,
+.nav__list a:hover::after {
+    content: "";
+
+    position: absolute;
+    left: 0;
+    right: 10px;
+    bottom: -6px;
+
+    display: block;
+    height: 4px;
+    background-color: #C4C4C4;
+    border-radius: 100px;
+}
+
+.nav__login {
+    display: flex;
+    column-gap: 25px;
+    font-weight: 500;
+    font-size: 15px;
+    align-items: center;
+}
+
+
+/* Button */
+.btn {
+    display: inline-block;
+    padding: 13px 44px;
+
+    font-size: 15px;
+    font-weight: 500;
+
+    background: linear-gradient(129.54deg, #FF7B4E 15.57%, #FF584E 95.03%); 
+    border-radius: 100px;
+
+    color: #FFFFFF;
+}
+
+/* сделаем эффект при нажатии на кнопку */
+
+.btn:active {
+    position: relative;
+    top: 1px;
+}
+
+
+
+/* LOGO */
+.logo {
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.logo a {
+    color: inherit !important;
+}
+
+.logo--footer {
+    color: var(--orange);
+}
+
+
+
+/* Header content */
+
+.header__badge {
+    margin-bottom: 7px;
+    display: inline-block;
+    font-size: 18px;
+    font-weight: 500;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 15px;
+    padding: 11px 30px;
+}
+
+.header__title {
+    margin-bottom: 30px;
+    font-weight: 400;
+    font-size: 55px;
+    line-height: 82px;
+}
+
+.header__text {
+    margin-bottom: 68px;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 38px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.header__btn {
+    font-weight: 600;
+    font-size: 25px;
+    background: linear-gradient(129.54deg, #FF7B4E 15.57%, #FF584E 95.03%);
+    border-radius: 27px;
+    display: inline-block;
+    padding: 27px 48px;
+}
+
+.header__btn:active {
+    position: relative;
+    top: 1px;
+}
+
+
+
+/* DESTINATIONS */
+
+.destinations {
+    padding: 96px 0 100px;
+    overflow-x: hidden; /*теперь не будет появляться скроула*/
+}
+
+.destinations__row {
+    display: flex;
+    column-gap: 50px;
+}
+
+.destinations__content {
+    max-width: 456px;
+}
+
+/* это слайдер, который должен уходить за экран */
+.destinations__slider {
+    width: 1110px;
+    flex-shrink: 0; /*так он не будет уменьшаться, а просто будет исчезать за экраном*/
+}
+
+
+
+.destinations__title {
+    margin-bottom: 15px;
+    font-weight: 600;
+    font-size: 55px;
+}
+
+.destinations__title span {
+    font-size: 30px;
+}
+
+
+.destinations__text {
+    margin-bottom: 60px;
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 38px;
+    color: var(--secondary);
+
+}
+
+
+.btn {
+    font-weight: 600;
+    font-size: 20px;
+    background: linear-gradient(129.54deg, #FF7B4E 15.57%, #FF584E 95.03%);
+    border-radius: 27px;
+    display: inline-block;
+    padding: 25px 45px;
+    color: #FEFEFE !important;
+   
+}
+
+
+.btn:active {
+    position: relative;
+    top: 1px;
+}
+
+
+/* SLIDER */
+
+.slider {
+    position: relative;
+    height: 456px;
+}
+
+.slider__item {
+    margin-top: 27px;
+
+    width: 335px;
+    height: 402px;
+    object-fit: cover;
+    border-radius: 35px;
+
+
+    transition: 0.2s ease-in;
+}
+
+/* прописываем такой селектор для слайдера: внутри класса слайдер, есть блок центр и там есть слайдер айтем*/
+.slider .center .slider__item {
+    margin-top: 0;
+    width: 380px;
+    height: 456px;
+}
+
+
+
+/* slider btn */
+
+.slider__btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+
+    display: block;
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    background: linear-gradient(129.54deg, #FF7B4E 15.57%, #FF584E 95.03%), #8B8B8B;
+
+    display: flex;
+    align-items: center;
+
+   
+
+}
+
+.slider__btn--prev {
+
+    left: -27px;
+    padding-left: 26px;
+    justify-content: flex-start;
+}
+
+.slider__btn--next {
+    
+    right: -27px;
+    padding-right: 26px;
+    justify-content: flex-end;
+}
+
+
+/* Customers */
+
+.customers {
+    padding: 100px 0 133px;
+}
+
+.customers__row {
+    display: flex;
+    column-gap: 68px;
+}
+
+.customers__img {
+    max-width: 478px;
+}
+
+.customers__img img {
+    border-radius: 60px;
+}
+
+
+.customers__title {
+    max-width: 565px;
+    margin-bottom: 35px;
+    font-weight: 500;
+    font-size: 45px;
+    line-height: 68px;
+}
+
+/* REVIEW */
+.review {
+    max-width: 490px;
+}
+
+.review__client {
+    margin-bottom: 60px;
+    display: flex;
+    column-gap: 33px;
+    align-items: center;
+}
+
+.review__client__avatar {
+    overflow: hidden;
+    width: 134px;
+    height: 134px;
+    background: #FF794E;;
+    border-radius: 50%;
+}
+
+
+
+.review__client-desc-name {
+    margin-bottom: 10px;
+    font-weight: 500;
+    font-size: 33px;
+    line-height: 50px;
+}
+
+.review__client-desc-country {
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 38px;
+    color: var(--secondary);
+}
+
+
+.review__text {
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 33px;
+    color: var(--secondary);
+    margin-bottom: 30px;
+}
+
+
+
+/* CTA */
+
+.cta {
+    padding: 100px 0;
+}
+
+.cta__plate {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 580px;
+    padding: 40px 15px;
+    background-color: #fff;
+    border-radius: 60px;
+}
+
+.cta__plate::before,
+.cta__plate::after {
+    position: absolute;
+    width: 63px;
+    height: 83px;
+
+    content: "";
+} 
+
+.cta__plate::before {
+    left: 74px;
+    bottom: 56px;
+    background-image: url(../img/cta/cta-el-01.svg);
+} 
+
+.cta__plate::after {
+    top: 74px;
+    right: 80px;
+    background-image: url(../img/cta/cta-el-02.svg);
+} 
+
+.cta__title {
+    margin-bottom: 30px;
+    font-weight: 500;
+    font-size: 45px;
+    line-height: 68px;
+    text-align: center;
+}
+
+.cta__text {
+    margin-bottom: 60px;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 45px;
+    color: var(--secondary);
+}
+
+/* Subscribe */
+
+.subscribe {
+    padding: 35px 0 50px;
+}
+
+.subscribe__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.subscribe__title {
+    margin-bottom: 60px;
+    max-width: 494px;
+    font-weight: 600;
+    font-size: 55px;
+    line-height: 82px;
+}
+
+
+/* Subscribe form */
+
+.subscribe-form {
+    display: flex;
+    column-gap: 191px;
+    padding: 12px 15px 12px 46px;
+    background-color: #fff;
+    border-radius: 35px;
+}
+
+.subscribe-form__input {
+   font-size: 24px;
+   font-weight: 500;
+  
+}
+
+.subscribe-form__input::placeholder {
+    color: var(--secondary);
+}
+
+.subscribe-form__btn {
+    padding: 34px 87px;
+    background: linear-gradient(129.54deg, #FF7B4E 15.57%, #FF584E 95.03%), #FFFFFF;
+    border-radius: 35px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 25px;
+    line-height: 38px;
+}
+
+
+/* footer */
+
+.footer {
+    padding: 56px 0 74px;
+}
+
+.footer a {
+    color: var(--secondary);
+}
+
+.btn--footer {
+    padding: 13px 43px;
+    font-weight: 500;
+    font-size: 15px;
+    border-radius: 100px;
+}
+
+.nav__login--footer {
+    column-gap: 66px;
+}
